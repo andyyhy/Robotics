@@ -41,14 +41,14 @@ function testCollision(q) {
     var j;
 
     // test for collision with each object
-    for (j=0;j<range.length;j++) {
+    for (j = 0; j < range.length; j++) {
 
         // assume configuration is in collision
         var in_collision = true;
 
         // no collision detected, if configuration is outside obstacle along any dimension
-        for (i=0;i<q.length;i++) {
-            if ((q[i]<range[j][i][0])||(q[i]>range[j][i][1]))
+        for (i = 0; i < q.length; i++) {
+            if ((q[i] < range[j][i][0]) || (q[i] > range[j][i][1]))
                 in_collision = false;
         }
 
@@ -78,7 +78,7 @@ function initRRT(q) {
     return tree;
 }
 
-function insertTreeVertex(tree,q) {
+function insertTreeVertex(tree, q) {
 
     // create new vertex object for tree with given configuration and no edges
     new_vertex = {};
@@ -94,7 +94,7 @@ function insertTreeVertex(tree,q) {
 }
 
 
-function insertTreeEdge(tree,q1_idx,q2_idx) {
+function insertTreeEdge(tree, q1_idx, q2_idx) {
 
     // add edge to first vertex as pointer to second vertex
     tree.vertices[q1_idx].edges.push(tree.vertices[q2_idx]);
@@ -103,7 +103,7 @@ function insertTreeEdge(tree,q1_idx,q2_idx) {
     tree.vertices[q2_idx].edges.push(tree.vertices[q1_idx]);
 
     // draw edge on canvas
-    draw_2D_edge_configurations(tree.vertices[q1_idx].vertex,tree.vertices[q2_idx].vertex);
+    draw_2D_edge_configurations(tree.vertices[q1_idx].vertex, tree.vertices[q2_idx].vertex);
 }
 
 //////////////////////////////////////////////////
@@ -116,16 +116,16 @@ function insertTreeEdge(tree,q1_idx,q2_idx) {
 //       (relative to the PAGE, not the canvas) into a world coordinate
 
 function xformWorldViewX(world_x) {
-    return (world_x*100)+200;  // view_x
+    return (world_x * 100) + 200;  // view_x
 }
 function xformWorldViewY(world_y) {
-    return (world_y*100)+200;  // view_y
+    return (world_y * 100) + 200;  // view_y
 }
 function xformMouseWorldX(view_x) {
-    return (view_x-canvas_side_off-200)/100;  // world_x
+    return (view_x - canvas_side_off - 200) / 100;  // world_x
 }
 function xformMouseWorldY(view_y) {
-    return (view_y-canvas_top_off-200)/100;  // world_y
+    return (view_y - canvas_top_off - 200) / 100;  // world_y
 }
 
 function setPlanningScene() {
@@ -134,15 +134,15 @@ function setPlanningScene() {
     range = []; // global variable
 
     // world boundary
-    range[0] = [ [-1.8,5.8],[-1.8,-1] ];
-    range[1] = [ [-1.8,5.8],[5,5.8] ];
-    range[2] = [ [-1.8,-1], [-1.8,5.8] ];
-    range[3] = [ [5,5.8],   [-1.8,5.8] ];
+    range[0] = [[-1.8, 5.8], [-1.8, -1]];
+    range[1] = [[-1.8, 5.8], [5, 5.8]];
+    range[2] = [[-1.8, -1], [-1.8, 5.8]];
+    range[3] = [[5, 5.8], [-1.8, 5.8]];
 
     // check for undefined obstacles
     if (obstacles === 'undefined')
-    return
-    
+        return
+
     // add obstacles dynamically loaded from src=planning_scene in search_canvas.html
     range = range.concat(obstacles)
 }
@@ -178,25 +178,25 @@ function initSearch() {
     };
 
     // when the mouse button is pressed, update mouseDown
-    canvas.onmousedown = function() {
+    canvas.onmousedown = function () {
         mouseDown = 1;
     };
 
     // when the mouse button is released, update mouseDown
-    canvas.onmouseup = function() {
+    canvas.onmouseup = function () {
         mouseDown = 0;
-        q_goal = [xformMouseWorldX(mouse_x),xformMouseWorldY(mouse_y)];
+        q_goal = [xformMouseWorldX(mouse_x), xformMouseWorldY(mouse_y)];
         restartSearch();
     };
 
     // specify start and goal configurations
-    q_start_config = [0,0];
-    q_goal_config = [4,4];
+    q_start_config = [0, 0];
+    q_goal_config = [4, 4];
     q_init = q_start_config;
     q_goal = q_goal_config;
 
     // keep track of the last goal drawn on the canvas
-    prev_q_goal = [10000,1000];
+    prev_q_goal = [10000, 1000];
 
     color_scheme = "default";
 
@@ -245,7 +245,7 @@ function initSearch() {
     textbar = document.createElement('div');
     textbar.style.zIndex = 0;    // if you still don't see the label, try uncommenting this
     textbar.style.position = 'absolute';
-    textbar.style.width = window.width-10;
+    textbar.style.width = window.width - 10;
     textbar.style["font-family"] = "Monospace";
     textbar.style["font-size"] = "12px";
     textbar.style.height = 20;
