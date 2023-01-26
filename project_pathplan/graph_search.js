@@ -38,7 +38,7 @@ function initSearchGraph() {
         for (jind = 0, ypos = -2; ypos < 7; jind++, ypos += eps) {
             G[iind][jind] = {
                 i: iind, j: jind, // mapping to graph array
-                x: xpos.toFixed(10), y: ypos.toFixed(10), // mapping to map coordinates
+                x: xpos, y: ypos, // mapping to map coordinates
                 parent: null, // pointer to parent in graph along motion path
                 distance: 10000, // distance to start via path through parent
                 visited: false, // flag for whether the node has been visited
@@ -49,11 +49,10 @@ function initSearchGraph() {
 
             // STENCIL: determine whether this graph node should be the start
             //   point for the search
-            if (xpos.toFixed(5) == q_init[0] && ypos.toFixed(5) == q_init[1]) {
-
+            if (Math.abs(xpos - q_init[0]) < (eps - 0.01) / 2 && Math.abs(ypos - q_init[1]) < (eps - 0.01) / 2) {
                 start_node = G[iind][jind];
             }
-            if (xpos.toFixed(5) == q_goal[0] && ypos.toFixed(5) == q_goal[1]) {
+            if (Math.abs(xpos - q_goal[0]) < (eps - 0.01) / 2 && Math.abs(ypos - q_goal[1]) < (eps - 0.01) / 2) {
                 goal_node = G[iind][jind];
             }
 
@@ -107,7 +106,7 @@ function iterateGraphSearch() {
     }
 
     //Check if the node is the goal node
-    if (current_node.x == q_goal[0] && current_node.y == q_goal[1]) {
+    if (Math.abs(current_node.x - q_goal[0]) < (eps - 0.01) / 2 && Math.abs(current_node.y - q_goal[1]) < (eps - 0.01) / 2) {
         search_iterate = false;
         drawHighlightedPathGraph(current_node)
         return "succeeded";
