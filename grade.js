@@ -1,4 +1,4 @@
-//CI grader generates report at 26-01-2023-13-11-10
+//CI grader generates report at 26-01-2023-18-41-05
 grade = 
 {
   "andyyhy": {
@@ -67,30 +67,30 @@ grade =
         }
       },
       "PathPlan_AStar": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "0 out of 5 test cases passed"
+          "5 out of 5 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Wrong result\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 1": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Wrong result\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 2": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Wrong result\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 3": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Wrong result\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 4": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Wrong result\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
