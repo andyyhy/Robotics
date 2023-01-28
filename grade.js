@@ -1,4 +1,4 @@
-//CI grader generates report at 27-01-2023-12-07-45
+//CI grader generates report at 27-01-2023-19-33-43
 grade = 
 {
   "andyyhy": {
@@ -9,14 +9,16 @@ grade =
     "repository": "AutoRob-WN23/kineval-stencil-yuhan0204",
     "assignments": {
       "Honor": {
-        "status": "PENDING",
+        "status": "CHECK",
         "comments": [
-          ""
+          "comment: honor code certified"
         ]
       },
       "ROS Pub/Sub": {
-        "status": "CHECK",
-        "comments": "Passing 3 out of 3 tests"
+        "status": "PENDING",
+        "comments": [
+          "Passing 0 of 3 tests"
+        ]
       },
       "PathPlan_Heap": {
         "status": "PASS",
