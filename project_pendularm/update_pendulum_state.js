@@ -66,6 +66,5 @@ function PID(pendulum, accumulated_error, dt) {
         pendulum.servo.ki * accumulated_error +
         pendulum.servo.kd * Math.abs(pendulum.angle_previous - pendulum.angle) / dt;
     accumulated_error = pendulum.servo.error + accumulated_error;
-    console.log(pendulum.control);
     return [pendulum, accumulated_error];
 }
