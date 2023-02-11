@@ -1,5 +1,5 @@
-//CI grader generates report at 10-02-2023-22-08-19
-//Commit hash: 966599a
+//CI grader generates report at 11-02-2023-15-20-52
+//Commit hash: 7b45e84
 grade = 
 {
   "andyyhy": {
@@ -96,34 +96,34 @@ grade =
         }
       },
       "Pendularm_Euler": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "0 out of 2 test cases passed"
+          "2 out of 2 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Test failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 1": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Test failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
       "Pendularm_VelocityVerlet": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "0 out of 2 test cases passed"
+          "2 out of 2 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Test failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 1": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Test failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
@@ -135,7 +135,7 @@ grade =
         "test results": {
           "Test 0": {
             "Status": "Failed",
-            "Stderr": "b'[ERROR]: PID test with velocity verlet failed\\n'"
+            "Stderr": "b'[ERROR]: PID overshoot too large or it diverges, please tune your PID values\\n'"
           }
         }
       },
