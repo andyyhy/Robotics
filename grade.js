@@ -1,5 +1,5 @@
-//CI grader generates report at 11-02-2023-17-08-27
-//Commit hash: 6d91fed
+//CI grader generates report at 11-02-2023-19-22-38
+//Commit hash: d9ab93f
 grade = 
 {
   "andyyhy": {
@@ -128,14 +128,14 @@ grade =
         }
       },
       "Pendularm_PID": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "0 out of 1 test cases passed"
+          "1 out of 1 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: PID overshoot too large or it diverges, please tune your PID values\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
