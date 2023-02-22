@@ -1,5 +1,5 @@
-//CI grader generates report at 22-02-2023-08-04-10
-//Commit hash: bf55ca2
+//CI grader generates report at 22-02-2023-10-29-07
+//Commit hash: 00f6340
 grade = 
 {
   "andyyhy": {
@@ -16,10 +16,8 @@ grade =
         ]
       },
       "ROS Pub/Sub": {
-        "status": "PENDING",
-        "comments": [
-          "Passing 0 of 3 tests"
-        ]
+        "status": "CHECK",
+        "comments": "Passing 3 out of 3 tests"
       },
       "PathPlan_Heap": {
         "status": "PASS",
