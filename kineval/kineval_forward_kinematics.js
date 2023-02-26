@@ -16,7 +16,7 @@
 
 |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| |\/| --*/
 
-kineval.robotForwardKinematics = function robotForwardKinematics () { 
+kineval.robotForwardKinematics = function robotForwardKinematics() {
 
     if (typeof kineval.buildFKTransforms === 'undefined') {
         textbar.innerHTML = "forward kinematics not implemented";
@@ -24,21 +24,22 @@ kineval.robotForwardKinematics = function robotForwardKinematics () {
     }
 
     // STENCIL: call kineval.buildFKTransforms();
+    kineval.buildFKTransforms();
 }
 
     // STENCIL: implement buildFKTransforms, which kicks off
-    //   a recursive traversal over links and 
-    //   joints starting from base, using following functions: 
+    //   a recursive traversal over links and
+    //   joints starting from base, using following functions:
     //     traverseFKBase
     //     traverseFKLink
     //     traverseFKJoint
     //
-    // To use the keyboard interface, assign the global variables 
-    //   "robot_heading" and "robot_lateral", 
-    //   which represent the z-axis (heading) and x-axis (lateral) 
-    //   of the robot's base in its own reference frame, 
+    // To use the keyboard interface, assign the global variables
+    //   "robot_heading" and "robot_lateral",
+    //   which represent the z-axis (heading) and x-axis (lateral)
+    //   of the robot's base in its own reference frame,
     //   transformed into the world coordinates.
-    // The axes should be represented in unit vector form 
+    // The axes should be represented in unit vector form
     //   as 4x1 homogenous matrices
 
     //

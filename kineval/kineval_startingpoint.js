@@ -27,7 +27,7 @@ kineval.startingPlaceholderInit = function startingPlaceholderInit() {
     */
 
     // READ THIS JS TUTORIAL-BY-EXAMPLE FUNCTION (in file XXX)
-    
+
     kineval.tutorialJavaScript();
 
     // READ THIS OVERVIEW OF KINEVAL ROBOT OBJECT (in file XXX)
@@ -55,7 +55,7 @@ function startingPlaceholderAnimate() {
     */
 
     // get the current in deciseconds from the global Date object
-    var cur_time = Date.now()/100;
+    var cur_time = Date.now() / 100;
 
     // HANDLE USER KEY INTERACTION
 
@@ -69,10 +69,10 @@ function startingPlaceholderAnimate() {
     //   into elements of the matrix
 
     var jsmat = [
-                [1, 0, 0, 0],
-                [0, 1, 0, 0],
-                [0, 0, 1, 0],
-                [0, 0, 0, 1] 
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1]
     ];
 
     // TRANSLATE ROBOT LINKS
@@ -85,7 +85,7 @@ function startingPlaceholderAnimate() {
     //   Note: Object.key(object) is a rough way to get number of keys in an 
     //   object, in this case the number of joints in the robot.joints object
 
-    jsmat[0][3] = -Object.keys(robot.links).length*spacingGlobal/2;
+    jsmat[0][3] = -Object.keys(robot.links).length * spacingGlobal / 2;
 
     // iteration loop over each link named in the robot.links array
     for (x in robot.links) {
@@ -95,40 +95,40 @@ function startingPlaceholderAnimate() {
 
         // set object y-axis position
         if (1 == 1) { // bouncing animation set to absolute value of sine wave 
-            jsmat[1][3] = waveAmplitude * Math.abs(Math.sin(((cur_time+jsmat[0][3])*waveFrequency))) + offsetVertical + jitterRadius*Math.random();
+            jsmat[1][3] = waveAmplitude * Math.abs(Math.sin(((cur_time + jsmat[0][3]) * waveFrequency))) + offsetVertical + jitterRadius * Math.random();
         }
         else { // older animation for jittering objects
-            jsmat[1][3] = offsetVertical+Math.random()*jitterRadius;
+            jsmat[1][3] = offsetVertical + Math.random() * jitterRadius;
         }
 
         // set object z-axis position
-        jsmat[2][3] = Math.random()*jitterRadius;
+        jsmat[2][3] = Math.random() * jitterRadius;
 
         // apply matrix to transform the object to its proper pose in 3D
         robot.links[x].xform = matrix_copy(jsmat);
-    } 
+    }
 
     // TRANSLATE ROBOT JOINTS
 
     // Iterate over each joint of the robot independently to set the poses of
     // each displayed joint geometry 
 
-    jsmat[0][3] = -Object.keys(robot.joints).length*spacingGlobal/2;
+    jsmat[0][3] = -Object.keys(robot.joints).length * spacingGlobal / 2;
     for (x in robot.joints) {
         jsmat[0][3] += spacingGlobal;
         if (1 == 1) { // bouncing animation set to absolute value of sine wave 
-            jsmat[1][3] = waveAmplitude * Math.abs(Math.sin(((cur_time+jsmat[0][3])*waveFrequency))) + offsetVertical + jitterRadius*Math.random();
+            jsmat[1][3] = waveAmplitude * Math.abs(Math.sin(((cur_time + jsmat[0][3]) * waveFrequency))) + offsetVertical + jitterRadius * Math.random();
         }
         else { // older animation for jittering objects
-            jsmat[1][3] = offsetVertical+Math.random()*jitterRadius;
+            jsmat[1][3] = offsetVertical + Math.random() * jitterRadius;
         }
-        jsmat[2][3] = Math.random()*jitterRadius;
+        jsmat[2][3] = Math.random() * jitterRadius;
 
         // apply matrix transform to joint geometry pose
         robot.joints[x].xform = matrix_copy(jsmat);
-    } 
+    }
 
-} 
+}
 
 
 kineval.tutorialJavaScript = function tutorialJSCoding() {
@@ -152,18 +152,18 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
 
     // this variable is a number with value 367002; "+" operator adds numbers
     //   Note: the "pow" method of the "Math" object is invoked
-    myObject.course_number = myObject.course_number*Math.pow(10,3) + 2;  
+    myObject.course_number = myObject.course_number * Math.pow(10, 3) + 2;
 
     // this variable is a string; "+" operator concatenates strings 
-    myObject.course_number = Math.floor(myObject.course_number/1000).toString() + "-" + "00" + (myObject.course_number%1000).toString();  
+    myObject.course_number = Math.floor(myObject.course_number / 1000).toString() + "-" + "00" + (myObject.course_number % 1000).toString();
 
     /* A property of an object can be index using the key within brackets or 
        after a period.  However, myObject[string_containing_the_word_subject] 
        is not equivalent to  myObject.string_containing_the_word_subject
     */
     var string_containing_the_word_subject = "subject";
-    myObject[string_containing_the_word_subject] = "robotics"; 
-    myObject.string_containing_the_word_subject = "an irrelevant property"; 
+    myObject[string_containing_the_word_subject] = "robotics";
+    myObject.string_containing_the_word_subject = "an irrelevant property";
 
     // JAVASCRIPT TUTORIAL: References to objects
 
@@ -181,7 +181,7 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
     */
 
     // if copiedObject does not already exist
-    if (typeof copiedObject === 'undefined') {  
+    if (typeof copiedObject === 'undefined') {
 
         console.log(myObject);  // check it out on the console  
         console.log(JSON.stringify(myObject));  // same thing as a string  
@@ -195,7 +195,7 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
         // these assignments will modify the data structure underlying both
         // copiedObject and myObject
         copiedObject = myObject;
-        copiedObject.subject = "autonomous_robotics";  
+        copiedObject.subject = "autonomous_robotics";
 
         /* VERIFY
              - What does myObject.subject report on the console?
@@ -217,8 +217,8 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
 
     // output each element to the console
     var i;  // local variable serving as an iterator through an array
-    for (i=0;i<myArray.length;i++) {
-        console.log(myArray[i]);  
+    for (i = 0; i < myArray.length; i++) {
+        console.log(myArray[i]);
     }
 
     // JAVASCRIPT TUTORIAL: Dynamic typing
@@ -258,7 +258,7 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
         myObjectKeys = Object.keys(inputObject);
 
         // output each key/value of myObject to console as formatted strings
-        for (i=0;i<myObjectKeys.length;i++) {
+        for (i = 0; i < myObjectKeys.length; i++) {
             var x = myObjectKeys[i];
             console.log("AutoRob " + x + " is " + inputObject[x]);
         }
@@ -266,7 +266,7 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
         /* the reserved variable "this" is a reference based on the context
              by which myFunction is invoked.  "this" has been assigned to
              an object in the scope of a longer discussion. 
-        */ 
+        */
         //console.log(this);
     }
 
@@ -288,18 +288,18 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
     */
 
     // create an empty div HTML element in the DOM
-    textbar = document.createElement('div'); 
+    textbar = document.createElement('div');
 
     // set element style (CSS) parameters of the created element
-    textbar.style.position = 'absolute'; 
+    textbar.style.position = 'absolute';
     textbar.style.top = 10 + 'px';
     textbar.style.left = 10 + 'px';
     textbar.style["font-family"] = "Monospace";
     textbar.style.color = "#00ff00";
     textbar.style.height = 20;
     // Note: window.innerWidth current width of the window viewport 
-    textbar.style.width = window.innerWidth-10; 
-    
+    textbar.style.width = window.innerWidth - 10;
+
     // if you do not see the textbar, try uncommenting this
     //textbar.style.zIndex = 1; 
 
@@ -310,7 +310,7 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
     textbar.id = "textbar";
 
     // attach the div element to the DOM under the body of the HTML document
-    document.body.appendChild(textbar);  
+    document.body.appendChild(textbar);
 
     /* The document.getElementById() method returns a reference to an object
          in the DOM that has the id specified in the input parameter
@@ -324,7 +324,7 @@ kineval.tutorialJavaScript = function tutorialJSCoding() {
 }
 
 
-kineval.printRobotInfo = function printRobotStuff() {   
+kineval.printRobotInfo = function printRobotStuff() {
 
     // PRINT MISCELLANEOUS ROBOT INFORMATION
 
@@ -333,20 +333,20 @@ kineval.printRobotInfo = function printRobotStuff() {
     // uncomment line below to print out initial starting robot data object
     //   in the console (click it in the console to inspect)
 
-    console.log(robot);  
+    console.log(robot);
 
     // uncomment line below to print out initial starting robot data object
     //   in the console, but this time as a string 
 
-    console.log(JSON.stringify(robot));  
+    console.log(JSON.stringify(robot));
 
     // print the names of all the links of the robot in the console 
 
-    console.log(robot.links);  
+    console.log(robot.links);
 
     // print the names of all the joints of the robot
 
-    console.log(robot.joints);  
+    console.log(robot.joints);
 
     // print the name of the base link the robot in the console
 
@@ -354,11 +354,11 @@ kineval.printRobotInfo = function printRobotStuff() {
 
     // print the current matrix transform of the robot base link 
 
-    console.log(robot.links[robot.base].xform); 
+    console.log(robot.links[robot.base].xform);
 
     // print the motor axis of the first child joint of the robot base link 
 
-    console.log(robot.joints[robot.links[robot.base].children[0]].axis); 
+    console.log(robot.joints[robot.links[robot.base].children[0]].axis);
 
 }
 
@@ -370,55 +370,66 @@ kineval.startingPlaceholderUserInput = function startingPlaceholderUserInput() {
     */
     if (keyboard.pressed("shift+x")) {
         textbar.innerHTML = "come on down";  // make the objects move down
-    // STENCIL: update the vertical offset variable
+        // STENCIL: update the vertical offset variable
+        offsetVertical -= 0.1;
+
     }
     else if (keyboard.pressed("x")) {
         textbar.innerHTML = "moving on up";  // make the objects move up
-    // STENCIL: update the vertical offset variable
+        // STENCIL: update the vertical offset variable
+        offsetVertical += 0.1;
     }
     else if (keyboard.pressed("shift+z")) {
         // increase the jittering of the objects
-        textbar.innerHTML = "its time for the percolator";  
-    // STENCIL: update the radius of the jittering
+        textbar.innerHTML = "its time for the percolator";
+        // STENCIL: update the radius of the jittering
+        jitterRadius += 0.01;
     }
     else if (keyboard.pressed("z")) {
         // decrease the jittering of the objects
-        textbar.innerHTML = "relax your mind, let your conscience be free";  
-    // STENCIL: update the radius of the jittering
+        textbar.innerHTML = "relax your mind, let your conscience be free";
+        // STENCIL: update the radius of the jittering
+        jitterRadius -= 0.01;
     }
-    else if (keyboard.pressed("shift+1")) { 
+    else if (keyboard.pressed("shift+1")) {
         // increase spacing along the x-axis between the objects
-        textbar.innerHTML = "sail away"; 
-    // STENCIL: update the global spacing variable
+        textbar.innerHTML = "sail away";
+        // STENCIL: update the global spacing variable
+        spacingGlobal += 0.1;
     }
     else if (keyboard.pressed("1")) {
         // decrease spacing along the x-axis between the objects
-        textbar.innerHTML = "come together"; 
-    // STENCIL: update the global spacing variable
+        textbar.innerHTML = "come together";
+        // STENCIL: update the global spacing variable
+        spacingGlobal -= 0.1
     }
-    else if (keyboard.pressed("shift+2")) { 
+    else if (keyboard.pressed("shift+2")) {
         // increase the amplitude of the animating sine wave
-        textbar.innerHTML = "ain't no mountain high enough"; 
-    // STENCIL: update the wave amplitude variable
+        textbar.innerHTML = "ain't no mountain high enough";
+        // STENCIL: update the wave amplitude variable
+        waveAmplitude += 0.01
     }
     else if (keyboard.pressed("2")) {
         // decrease the amplitude of the animating sine wave
-        textbar.innerHTML = "got 'til it's gone"; 
-    // STENCIL: update the wave amplitude variable
+        textbar.innerHTML = "got 'til it's gone";
+        // STENCIL: update the wave amplitude variable
+        waveAmplitude -= 0.01
     }
-    else if (keyboard.pressed("shift+3")) { 
+    else if (keyboard.pressed("shift+3")) {
         // increase the frequency of the animating sine wave
-        textbar.innerHTML = "good vibrations"; 
-    // STENCIL: update the global spacing variable
+        textbar.innerHTML = "good vibrations";
+        // STENCIL: update the global spacing variable
+        waveFrequency += -0.01
     }
     else if (keyboard.pressed("3")) {
         // decrease the frequency of the animating sine wave
-        textbar.innerHTML = "friends in low(er) places"; 
-    // STENCIL: update the global spacing variable
+        textbar.innerHTML = "friends in low(er) places";
+        // STENCIL: update the global spacing variable
+        waveFrequency -= -0.01
     }
     else {
         // STENCIL: say something more interesting in the textbar element
-        textbar.innerHTML = "Welcome to KinEval. I want to see some text. Can you place a message here?"; 
+        textbar.innerHTML = "Welcome to KinEval. I want to see some text. Can you place a message here?";
     }
 }
 
