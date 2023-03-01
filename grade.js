@@ -1,5 +1,5 @@
-//CI grader generates report at 01-03-2023-15-46-43
-//Commit hash: 33028cc
+//CI grader generates report at 01-03-2023-17-26-13
+//Commit hash: 3360f45
 grade = 
 {
   "andyyhy": {
@@ -147,7 +147,7 @@ grade =
         "test results": {
           "Test 0": {
             "Status": "Failed",
-            "Stderr": "b'matrix_multiply test pass\\nmatrix_transpose test fail\\nvector_normalize test fail\\nvector_cross test pass\\ngenerate_identity test pass\\ngenerate_translation_matrix test pass\\ngenerate_rotation_matrix_X test pass\\ngenerate_rotation_matrix_Y test pass\\ngenerate_rotation_matrix_Z test pass\\n[ERROR]: Test fail\\n'"
+            "Stderr": "b'matrix_multiply test pass\\nmatrix_transpose test pass\\nvector_normalize test fail\\nvector_cross test pass\\ngenerate_identity test pass\\ngenerate_translation_matrix test pass\\ngenerate_rotation_matrix_X test pass\\ngenerate_rotation_matrix_Y test pass\\ngenerate_rotation_matrix_Z test pass\\n[ERROR]: Test fail\\n'"
           }
         }
       },
