@@ -58,12 +58,10 @@ function matrix_multiply(m1, m2) {
 
 function matrix_transpose(m) {
     // returns 2D array that is the result of m1*m2
-    let ans = matrix_copy(m);
+    var ans = matrix_copy(m);
     for (var i = 0; i < m.length; i++) {
-        for (var j = 0; j < i; j++) {
-            var temp = ans[i][j];
-            ans[j][i] = ans[j][i];
-            ans[j][i] = temp;
+        for (var j = 0; j < m[0].length; j++) {
+            ans[j][i] = m[i][j];
         }
     }
     return ans;
@@ -89,7 +87,7 @@ function vector_normalize(v) {
     var length = Math.sqrt(total);
 
     for (var i = 0; i < ans.length; i++) {
-        ans = v[i] / length;
+        ans[i] = v[i] / length;
     }
 
     return ans;
