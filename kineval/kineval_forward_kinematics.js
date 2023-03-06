@@ -34,8 +34,43 @@ kineval.robotForwardKinematics = function robotForwardKinematics() {
 //     traverseFKLink
 //     traverseFKJoint
 
-kineval.buildFKTransforms() = function buildFKTransforms() {
+kineval.buildFKTransforms = function buildFKTransforms() {
+    var mstack = generate_identity();
+    this.traverseFKBase(mstack);
+}
 
+kineval.traverseFKBase = function traverseFKBase(mstack) {
+    var temp = matrix_multiply(mstack, generate_translation_matrix(robot.origin.xyz[0], robot.origin.xyz[1], robot.origin.xyz[2]));
+    var temp2 = matrix_multiply(generate_rotation_matrix_X(robot.origin.rpy[0]), generate_rotation_matrix_Y(robot.origin.rpy[1]));
+    var temp2 = matrix_multiply(temp2, generate_rotation_matrix_Z(robot.origin.rpy[2]));
+    mstack = matrix_multiply(temp, temp2);
+    robot.origin.xform = matrix_copy(mstack);
+    robot.links[robot.base].xform = matrix_copy(mstack);
+    for (var i = 0; i < robot.links[robot.base].children.length; i++) {
+        this.traverseFKJoint(robot.links[robot.base].children[i], mstack);
+    }
+}
+kineval.traverseFKJoint = function traverseFKJoint(cur, mstack) {
+    var temp = matrix_multiply(mstack, generate_translation_matrix(robot.joints[cur].origin.xyz[0], robot.joints[cur].origin.xyz[1], robot.joints[cur].origin.xyz[2]));
+    var temp2 = matrix_multiply(generate_rotation_matrix_X(robot.joints[cur].origin.rpy[0]), generate_rotation_matrix_Y(robot.joints[cur].origin.rpy[1]));
+    var temp2 = matrix_multiply(temp2, generate_rotation_matrix_Z(robot.joints[cur].origin.rpy[2]));
+    mstack = matrix_multiply(temp, temp2);
+    robot.joints[cur].xform = matrix_copy(mstack);
+    this.traverseFKLink(robot.links[robot.joints[cur].child].name, mstack);
+
+}
+
+kineval.traverseFKLink = function traverseFKLink(cur, mstack) {
+    robot.links[cur].xform = matrix_copy(mstack);
+
+    if (!robot.links[cur].children) {
+        return;
+    }
+    else {
+        for (var i = 0; i < robot.links[cur].children.length; i++) {
+            this.traverseFKJoint(robot.links[cur].children[i], mstack)
+        }
+    }
 }
     //
     // To use the keyboard interface, assign the global variables
