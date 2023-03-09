@@ -1,5 +1,5 @@
-//CI grader generates report at 09-03-2023-15-20-28
-//Commit hash: b403d53
+//CI grader generates report at 09-03-2023-17-35-37
+//Commit hash: bf296d7
 grade = 
 {
   "andyyhy": {
@@ -140,14 +140,14 @@ grade =
         }
       },
       "FK_MatrixRoutines": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "0 out of 1 test cases passed"
+          "1 out of 1 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "Error message too long, print partially: b\"/andyyhy/FK_MatrixRoutines/test_0.js:624\\ntest_main()numeric = require('./numeric-1.2.6.js')\\n           ^^^^^^^\\n\\nSyntaxError: Unexpected identifier\\n    at createScript (vm.js:80:10)\\n    at Object.runInThisContext (vm.js:139:10)\\n    at Module._compile (module.js:616:28)\\n    at Object.Module._extensions..js (module.js:663:10)\\n    at Module.load (module.js:565:32)\\n    at tryModuleLoad (module.js:505:12)\\n    at Function.Mod"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
@@ -205,7 +205,7 @@ grade =
         "test results": {
           "Test 0": {
             "Status": "Failed",
-            "Stderr": "Error message too long, print partially: b\"/andyyhy/FSMDance_Quaternion/test_0.js:317\\ntest_main()numeric = require('./numeric-1.2.6.js')\\n           ^^^^^^^\\n\\nSyntaxError: Unexpected identifier\\n    at createScript (vm.js:80:10)\\n    at Object.runInThisContext (vm.js:139:10)\\n    at Module._compile (module.js:616:28)\\n    at Object.Module._extensions..js (module.js:663:10)\\n    at Module.load (module.js:565:32)\\n    at tryModuleLoad (module.js:505:12)\\n    at Function.M"
+            "Stderr": "b'quaternionFromAxisAngle undefined\\nquaternionNormalize undefined\\nquaternionMultiply undefined\\nquaternionToRotationMatrix undefined\\nAt least one function undefined\\n'"
           }
         }
       },
