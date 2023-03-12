@@ -55,7 +55,11 @@ kineval.traverseFKJoint = function traverseFKJoint(cur, mstack) {
     var temp = matrix_multiply(mstack, generate_translation_matrix(robot.joints[cur].origin.xyz[0], robot.joints[cur].origin.xyz[1], robot.joints[cur].origin.xyz[2]));
     temp = matrix_multiply(temp, generate_rotation_matrix_Z(robot.joints[cur].origin.rpy[2]));
     temp = matrix_multiply(temp, generate_rotation_matrix_Y(robot.joints[cur].origin.rpy[1]));
-    mstack = matrix_multiply(temp, generate_rotation_matrix_X(robot.joints[cur].origin.rpy[0]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_X(robot.joints[cur].origin.rpy[0]));
+    q = kineval.quaternionFromAxisAngle(robot.joints[cur].axis, robot.joints[cur].angle);
+
+    q_mat = kineval.quaternionToRotationMatrix(q);
+    mstack = matrix_multiply(temp, q_mat);
     robot.joints[cur].xform = matrix_copy(mstack);
     this.traverseFKLink(robot.links[robot.joints[cur].child].name, mstack);
 
@@ -72,14 +76,18 @@ kineval.traverseFKLink = function traverseFKLink(cur, mstack) {
         }
     }
 }
-    //
-    // To use the keyboard interface, assign the global variables
-    //   "robot_heading" and "robot_lateral",
-    //   which represent the z-axis (heading) and x-axis (lateral)
-    //   of the robot's base in its own reference frame,
-    //   transformed into the world coordinates.
-    // The axes should be represented in unit vector form
-    //   as 4x1 homogenous matrices
+//
+// To use the keyboard interface, assign the global variables
+//   "robot_heading" and "robot_lateral",
+//   which represent the z-axis (heading) and x-axis (lateral)
+//   of the robot's base in its own reference frame,
+//   transformed into the world coordinates.
+// The axes should be represented in unit vector form
+//   as 4x1 homogenous matrices
+
+var robot_heading = matrix_multiply(robot.origin.xform, [[0], [0], [1], [1]]);
+var robot_lateral = matrix_multiply(robot.origin.xform, [[1], [0], [0], [1]]);
+
 
     //
     // if geometries are imported and using ROS coordinates (e.g., fetch),
