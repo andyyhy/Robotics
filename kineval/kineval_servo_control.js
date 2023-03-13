@@ -25,7 +25,21 @@ kineval.setpointDanceSequence = function execute_setpoints() {
 
     const current_index = kineval.params.dance_pose_index
     kineval.params.setpoint_target = kineval.setpoints[kineval.params.dance_sequence_index[current_index]];
-    kineval.params.dance_pose_index = (kineval.params.dance_pose_index + 1) % kineval.params.dance_sequence_index.length;
+
+    var done = true;
+    for (x in robot.joints) {
+        var servo_error = Math.abs(kineval.params.setpoint_target[x] - robot.joints[x].angle);
+        if (servo_error > 0.001) {
+            done = false;
+            break;
+        }
+    }
+
+    if (done) {
+        kineval.params.dance_pose_index = (kineval.params.dance_pose_index + 1) % kineval.params.dance_sequence_index.length;
+    }
+
+
 }
 
 kineval.setpointClockMovement = function execute_clock() {
@@ -54,5 +68,3 @@ kineval.robotArmControllerSetpoint = function robot_pd_control() {
         robot.joints[x].control = servo_error * robot.joints[x].servo.p_gain;
     }
 }
-
-
