@@ -25,6 +25,7 @@ kineval.robotForwardKinematics = function robotForwardKinematics() {
 
     // STENCIL: call kineval.buildFKTransforms();
     kineval.buildFKTransforms();
+
 }
 
 // STENCIL: implement buildFKTransforms, which kicks off
@@ -49,6 +50,9 @@ kineval.traverseFKBase = function traverseFKBase(mstack) {
     for (var i = 0; i < robot.links[robot.base].children.length; i++) {
         this.traverseFKJoint(robot.links[robot.base].children[i], mstack);
     }
+
+    robot_heading = matrix_multiply(robot.origin.xform, [[0], [0], [1], [1]]);
+    robot_lateral = matrix_multiply(robot.origin.xform, [[1], [0], [0], [1]]);
 }
 
 kineval.traverseFKJoint = function traverseFKJoint(cur, mstack) {
@@ -76,17 +80,14 @@ kineval.traverseFKLink = function traverseFKLink(cur, mstack) {
         }
     }
 }
-//
-// To use the keyboard interface, assign the global variables
-//   "robot_heading" and "robot_lateral",
-//   which represent the z-axis (heading) and x-axis (lateral)
-//   of the robot's base in its own reference frame,
-//   transformed into the world coordinates.
-// The axes should be represented in unit vector form
-//   as 4x1 homogenous matrices
-
-var robot_heading = matrix_multiply(robot.origin.xform, [[0], [0], [1], [1]]);
-var robot_lateral = matrix_multiply(robot.origin.xform, [[1], [0], [0], [1]]);
+    //
+    // To use the keyboard interface, assign the global variables
+    //   "robot_heading" and "robot_lateral",
+    //   which represent the z-axis (heading) and x-axis (lateral)
+    //   of the robot's base in its own reference frame,
+    //   transformed into the world coordinates.
+    // The axes should be represented in unit vector form
+    //   as 4x1 homogenous matrices
 
 
     //
