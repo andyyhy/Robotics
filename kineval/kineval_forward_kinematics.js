@@ -61,7 +61,6 @@ kineval.traverseFKJoint = function traverseFKJoint(cur, mstack) {
     temp = matrix_multiply(temp, generate_rotation_matrix_Y(robot.joints[cur].origin.rpy[1]));
     temp = matrix_multiply(temp, generate_rotation_matrix_X(robot.joints[cur].origin.rpy[0]));
     q = kineval.quaternionFromAxisAngle(robot.joints[cur].axis, robot.joints[cur].angle);
-
     q_mat = kineval.quaternionToRotationMatrix(q);
     mstack = matrix_multiply(temp, q_mat);
     robot.joints[cur].xform = matrix_copy(mstack);
