@@ -1,4 +1,4 @@
-//CI grader generates report at 17-03-2023-14-22-31
+//CI grader generates report at 18-03-2023-12-01-56
 //Commit hash: cdda6b1
 grade = 
 {
@@ -326,16 +326,16 @@ grade =
         "status": "Takehome: 1.0 Interactive: 0.7"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome: 0.75 Interactive: 0.67"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome: 1.0 Interactive: 1.0"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome (Doubled): 1.5  (No Interactive)"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome: 0.75 Interactive: 0.4"
       },
       {
         "status": "PENDING"
