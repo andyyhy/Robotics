@@ -1,5 +1,5 @@
-//CI grader generates report at 17-03-2023-10-59-47
-//Commit hash: 6fc2c83
+//CI grader generates report at 17-03-2023-14-22-31
+//Commit hash: cdda6b1
 grade = 
 {
   "andyyhy": {
@@ -323,7 +323,7 @@ grade =
     },
     "quizzes": [
       {
-        "status": "PENDING"
+        "status": "Takehome: 1.0 Interactive: 0.7"
       },
       {
         "status": "PENDING"
