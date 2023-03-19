@@ -1,5 +1,5 @@
-//CI grader generates report at 18-03-2023-13-45-38
-//Commit hash: 1b0b249
+//CI grader generates report at 19-03-2023-14-03-45
+//Commit hash: 96fccab
 grade = 
 {
   "andyyhy": {
@@ -16,10 +16,8 @@ grade =
         ]
       },
       "ROS Pub/Sub": {
-        "status": "PENDING",
-        "comments": [
-          "Passing 0 of 3 tests"
-        ]
+        "status": "CHECK",
+        "comments": "Passing 3 out of 3 tests"
       },
       "PathPlan_Heap": {
         "status": "PASS",
@@ -325,19 +323,19 @@ grade =
     },
     "quizzes": [
       {
-        "status": "PENDING"
+        "status": "Takehome: 1.0 Interactive: 0.7"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome: 0.75 Interactive: 0.67"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome: 1.0 Interactive: 1.0"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome (Doubled): 1.5  (No Interactive)"
       },
       {
-        "status": "PENDING"
+        "status": "Takehome: 0.75 Interactive: 0.4"
       },
       {
         "status": "PENDING"
