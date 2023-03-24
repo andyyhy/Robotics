@@ -7,11 +7,11 @@ sawyer_gray = [0.75294,0.75294,0.75294,1];
 robot = {
   name:"baxter", 
   base:"pedestal", 
-  origin:{ xyz: [0,0.1,0], rpy:[0,0,0] },
+  origin:{ xyz: [0,0.94,0], rpy:[0,0,0] },
   links: {
     "torso": { 
       visual : { 
-        origin : { xyz: [0,0,0], rpy:[0,0,0] },
+        origin : { xyz: [0,0,2], rpy:[0,0,0] },
         geometry : { mesh : { filename : "meshes/torso/base_link.DAE" } },
         material : { color : { rgba : darkgray } }
       }
@@ -25,7 +25,7 @@ robot = {
     },
     "head": {
       visual : { 
-        origin : { xyz: [0,0,0.00953], rpy:[0,0,0] },
+        origin : { xyz: [0,0,1.00953], rpy:[0,0,0] },
         geometry : { mesh : { filename : "meshes/head/H0.DAE" } },
         material : { color : { rgba : [darkgray] } }
       }
@@ -40,7 +40,6 @@ robot = {
     "right_arm_mount": { 
       visual : { 
         origin : { xyz: [0,0,0], rpy:[0,0,0] },
-        //XX create box
         geometry : { mesh : { filename : "meshes/wrist/W2.DAE" } },
         material : { color : { rgba : [darkred] } }
       }
@@ -98,7 +97,6 @@ robot = {
     "left_arm_mount": { 
       visual : { 
         origin : { xyz: [0,0,0], rpy:[0,0,0] },
-        //XX create box
         geometry : { mesh : { filename : "meshes/wrist/W2.DAE" } },
         material : { color : { rgba : [darkred] } }
       }
@@ -152,19 +150,7 @@ robot = {
         material : { color : { rgba : [darkred] } }
       }
     },
- 
   },
- 
-/*
-    "blank": { 
-      visual : { 
-        origin : { xyz: [0,0,0], rpy:[0,0,0] },
-        geometry : { mesh : { filename : "r_wheel_link.STL" } },
-        material : { color : { rgba : [0.086, 0.506, 0.767, 1] } }
-      }
-    }
-*/
-
 };
 
 
@@ -175,12 +161,12 @@ robot.endeffector.position = [[0.1],[0],[0],[1]]
 
 robot.joints = {};
 
-// hacked origin offset for pedestal base
+// hacked origin offset for pedestal base (z value)
 robot.joints.torso_t0 = { 
     type : "fixed",
     parent: "pedestal", child: "torso", 
     axis : [0,0,1],
-    origin : {xyz: [0,0,0.86488], rpy:[0,0,0]},
+    origin : {xyz: [0,0,0], rpy:[0,0,0]},
     limit : {lower:-3.01, upper:3.01}
 };
 
@@ -339,18 +325,6 @@ robot.joints.left_w2 = {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // note ROS coordinate system (x:forward, y:lateral, z:up) is different than threejs (x:lateral, y:up, z:forward)
 robot.links_geom_imported = true;
 
@@ -407,24 +381,15 @@ function assignFetchModelCollada2(filename,index) {
     );
 }
 
-
 function assignFetchModelSTL(filename,material_urdf,linkname) {
 
     console.log("assignFetchModel : "+filename+" - "+linkname); 
     var stl_loader = new THREE.STLLoader();
     var val = stl_loader.load(filename, 
        function ( geometry ) {
-            // ocj: add transparency
             var material_color = new THREE.Color(material_urdf.color.rgba[0], material_urdf.color.rgba[1], material_urdf.color.rgba[2]);
             var material = new THREE.MeshLambertMaterial( {color: material_color, side: THREE.DoubleSide} );
             links_geom[linkname] = new THREE.Mesh( geometry, material ) ;
-        } //,
-        //function (xhr) {
-        //    console.log(filename+" - "+linkname+": "+(xhr.loaded / xhr.total * 100) + '% loaded' );
-        //}
+        }
     );
 }
-
-
-
-
