@@ -69,8 +69,11 @@ function matrix_transpose(m) {
 
 function matrix_pseudoinverse(m) {
     // returns pseudoinverse of matrix m
+    console.log(m);
+
     var temp = matrix_transpose(m);
     temp = matrix_multiply(temp, m);
+    console.log(temp);
     temp = numeric.inv(temp)
 
     var ans = matrix_transpose(m);
