@@ -118,31 +118,32 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
 
         var joint_axis_world = matrix_multiply(robot.joints[joint_names[i]].xform, temp_axis);
 
-        var temp = [];
+        var temp_cross_RHS = [];
         for (var j = 0; j < 3; j++) {
-            temp.push(endeffector_position_world[j][0] - joint_origin_world[j][0]);
+            temp_cross_RHS.push(endeffector_position_world[j][0] - joint_origin_world[j][0]);
         }
-        var temp_joint_axis_world = [];
-        temp_joint_axis_world.push(joint_axis_world[0][0]);
-        temp_joint_axis_world.push(joint_axis_world[1][0]);
-        temp_joint_axis_world.push(joint_axis_world[2][0]);
+        var temp_cross_LHS = [];
 
-        console.log(temp)
+        for (var j = 0; j < 3; j++) {
+            temp_cross_LHS.push(joint_axis_world[j][0] - joint_origin_world[j][0]);
+        }
+
+        //console.log(temp)
 
 
-        temp = vector_cross(temp_joint_axis_world, temp);
-        jacobian[0][i] = temp[0];
-        jacobian[1][i] = temp[1];
-        jacobian[2][i] = temp[2];
+        jacobian_linear = vector_cross(temp_cross_LHS, temp_cross_RHS);
+        jacobian[0][i] = jacobian_linear[0];
+        jacobian[1][i] = jacobian_linear[1];
+        jacobian[2][i] = jacobian_linear[2];
 
         //Calculate angular velocity jacobian
-        jacobian[3][i] = joint_axis_world[0][0];
-        jacobian[4][i] = joint_axis_world[1][0];
-        jacobian[5][i] = joint_axis_world[2][0];
+        jacobian[3][i] = temp_cross_LHS[0];
+        jacobian[4][i] = temp_cross_LHS[1];
+        jacobian[5][i] = temp_cross_LHS[2];
     }
 
 
-    console.log(jacobian)
+    //console.log(jacobian)
 
 
     //Find the error term (6x1 matrix)
