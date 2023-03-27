@@ -175,8 +175,8 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
     robot.jacobian = jacobian;
     robot.dq = dq;
 
-    console.log(robot.dx);
-    console.log(robot.jacobian);
-    console.log(robot.dq);
+    //console.log(robot.dx);
+    //console.log(robot.jacobian);
+    //console.log(robot.dq);
 
 }
