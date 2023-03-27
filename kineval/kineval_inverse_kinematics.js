@@ -117,25 +117,30 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
 
         var temp = [];
         for (var j = 0; j < 3; j++) {
-            temp.push(endeffector_position_world[j][0] - joint_origin_world[j]);
+            temp.push(endeffector_position_world[j][0] - joint_origin_world[j][0]);
         }
-        temp = vector_cross(joint_axis_world, temp);
+        var temp_joint_axis_world = [];
+        temp_joint_axis_world.push(joint_axis_world[0][0]);
+        temp_joint_axis_world.push(joint_axis_world[1][0]);
+        temp_joint_axis_world.push(joint_axis_world[2][0]);
+
+
+        temp = vector_cross(temp_joint_axis_world, temp);
         jacobian[0][i] = temp[0];
         jacobian[1][i] = temp[1];
         jacobian[2][i] = temp[2];
 
         //Calculate angular velocity jacobian
-        jacobian[3][i] = joint_axis_world[0];
-        jacobian[4][i] = joint_axis_world[1];
-        jacobian[5][i] = joint_axis_world[2];
+        jacobian[3][i] = joint_axis_world[0][0];
+        jacobian[4][i] = joint_axis_world[1][0];
+        jacobian[5][i] = joint_axis_world[2][0];
     }
 
 
-    console.log("jacobian", jacobian);
+
 
 
     //Find the error term (6x1 matrix)
-
     var dx = [
         [endeffector_target_world.position[0][0] - endeffector_position_world[0][0]],
         [endeffector_target_world.position[1][0] - endeffector_position_world[1][0]],
@@ -162,6 +167,6 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
 
     robot.dx = dx;
     robot.jacobian = jacobian;
-    robot.dq;
+    robot.dq = dq;
 
 }

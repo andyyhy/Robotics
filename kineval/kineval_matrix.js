@@ -58,28 +58,44 @@ function matrix_multiply(m1, m2) {
 
 function matrix_transpose(m) {
     // returns 2D array that is the result of m1*m2
-    var ans = matrix_copy(m);
-    for (var i = 0; i < m.length; i++) {
-        for (var j = 0; j < m[0].length; j++) {
-            ans[j][i] = m[i][j];
+    const rows = m.length;
+    const cols = m[0].length;
+    var ans = Array();
+    for (var j = 0; j < cols; j++) {
+        var newRow = Array();
+        for (var i = 0; i < rows; i++) {
+            newRow.push(m[i][j]);
         }
+        ans.push(newRow);
     }
     return ans;
 }
 
 function matrix_pseudoinverse(m) {
     // returns pseudoinverse of matrix m
-    console.log(m);
 
-    var temp = matrix_transpose(m);
-    temp = matrix_multiply(temp, m);
-    console.log(temp);
-    temp = numeric.inv(temp)
+    var N = m.length;
+    var M = m[0].length;
 
-    var ans = matrix_transpose(m);
-    ans = matrix_multiply(temp, ans);
+    if (N > M) {
+        var temp = matrix_transpose(m);
+        temp = matrix_multiply(temp, m);
+        temp = numeric.inv(temp);
+        var ans = matrix_transpose(m);
+        ans = matrix_multiply(temp, ans);
 
-    return ans;
+        return ans;
+
+    }
+    else {
+        var temp = matrix_transpose(m);
+        temp = matrix_multiply(m, temp);
+        temp = numeric.inv(temp);
+        var ans = matrix_transpose(m);
+        ans = matrix_multiply(ans, temp);
+
+        return ans;
+    }
 
 }
 
