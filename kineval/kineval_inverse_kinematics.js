@@ -101,7 +101,7 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
     //Initialize jacobian
     var jacobian = Array(6);
     for (var i = 0; i < jacobian.length; i++) {
-        jacobian[i] = Array(joint_names.length).fill(0);
+        jacobian[i] = Array(joint_names.length);
     }
 
 
@@ -173,5 +173,9 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
     robot.dx = dx;
     robot.jacobian = jacobian;
     robot.dq = dq;
+
+    console.log(robot.dx);
+    console.log(robot.jacobian);
+    console.log(robot.dq);
 
 }
