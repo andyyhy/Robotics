@@ -85,6 +85,8 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
 
 
     var endeffector_position_world = matrix_multiply(robot.joints[endeffector_joint].xform, endeffector_position_local);
+    //console.log("endeffector_pos_local", endeffector_position_local);
+    //console.log("endeffector_pos_world", endeffector_position_world);
 
     //Get all joint names
     var joint_names = [];
@@ -94,6 +96,7 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
         cur_joint = robot.links[robot.joints[cur_joint].parent].parent;
         joint_names.push(cur_joint);
     }
+    joint_names = joint_names.reverse();
 
     //Initialize jacobian
     var jacobian = Array(6);
@@ -124,6 +127,8 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
         temp_joint_axis_world.push(joint_axis_world[1][0]);
         temp_joint_axis_world.push(joint_axis_world[2][0]);
 
+        console.log(temp)
+
 
         temp = vector_cross(temp_joint_axis_world, temp);
         jacobian[0][i] = temp[0];
@@ -137,7 +142,7 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
     }
 
 
-
+    console.log(jacobian)
 
 
     //Find the error term (6x1 matrix)
