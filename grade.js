@@ -1,5 +1,5 @@
-//CI grader generates report at 26-03-2023-19-43-41
-//Commit hash: 8d94fa7
+//CI grader generates report at 26-03-2023-22-08-43
+//Commit hash: fb23a5d
 grade = 
 {
   "andyyhy": {
@@ -242,31 +242,31 @@ grade =
         "test results": {
           "Test 0": {
             "Status": "Failed",
-            "Stderr": "b'robot.jacobian not defined, please check whether you have assigned value for robot.jacobian\\n'"
+            "Stderr": "b'jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\n[ERROR]: Incorrect IK Jacobian for test 0\\n'"
           },
           "Test 1": {
             "Status": "Failed",
-            "Stderr": "b'robot.jacobian not defined, please check whether you have assigned value for robot.jacobian\\n'"
+            "Stderr": "b'jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\n[ERROR]: Incorrect IK Jacobian for test 1\\n'"
           }
         }
       },
       "IK_JTranspose": {
         "status": "PENDING",
         "comments": [
-          "0 out of 3 test cases passed"
+          "1 out of 3 test cases passed"
         ],
         "test results": {
           "Test 0": {
             "Status": "Failed",
-            "Stderr": "b'robot.dq not defined, please check whether you have assigned value for robot.dq\\n'"
+            "Stderr": "b'jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\nrobot.dq not defined, please check whether you have assigned value for robot.dq\\n'"
           },
           "Test 1": {
             "Status": "Failed",
-            "Stderr": "b'robot.dq not defined, please check whether you have assigned value for robot.dq\\n'"
+            "Stderr": "b'jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\nrobot.dq not defined, please check whether you have assigned value for robot.dq\\n'"
           },
           "Test 2": {
-            "Status": "Failed",
-            "Stderr": "b'Target not reached\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
@@ -278,15 +278,15 @@ grade =
         "test results": {
           "Test 0": {
             "Status": "Failed",
-            "Stderr": "b'robot.dq not defined, please check whether you have assigned value for robot.dq\\n'"
+            "Stderr": "Error message too long, print partially: b'jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\n[ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.22999999999999"
           },
           "Test 1": {
             "Status": "Failed",
-            "Stderr": "b'robot.dq not defined, please check whether you have assigned value for robot.dq\\n'"
+            "Stderr": "Error message too long, print partially: b'jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\n[ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.22999999999999"
           },
           "Test 2": {
             "Status": "Failed",
-            "Stderr": "b'Target not reached\\n'"
+            "Stderr": "Error message too long, print partially: b\"jacobian [ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.2299999999999998 ],\\n  [ -0.65,\\n    -0.35999999999999993,\\n    -0.5699999999999998,\\n    -0.6149999999999999 ],\\n  [ 0, 0, 0, 0.255 ],\\n  [ [ 1.3 ], [ 0.3 ], [ 0.3 ], [ 0.3 ] ],\\n  [ [ 1.25 ], [ 2.25 ], [ 1.9569999999999999 ], [ -0.6 ] ],\\n  [ [ 1.5499999999999998 ],\\n    [ 0.85 ],\\n    [ 0.857 ],\\n    [ -6.123233995736766e-17 ] ] ]\\n[ [ 0.625,\\n    2.6999999999999993,\\n    3.7182999999999993,\\n    -1.22999999999999"
           }
         }
       },
