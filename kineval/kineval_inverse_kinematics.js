@@ -92,7 +92,8 @@ kineval.iterateIK = function iterate_inverse_kinematics(endeffector_target_world
     var joint_names = [];
     var cur_joint = endeffector_joint;
     joint_names.push(cur_joint);
-    while (robot.joints[cur_joint].parent != "base") {
+    console.log(robot.base)
+    while (robot.joints[cur_joint].parent != robot.base) {
         cur_joint = robot.links[robot.joints[cur_joint].parent].parent;
         joint_names.push(cur_joint);
     }
