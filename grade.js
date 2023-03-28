@@ -1,5 +1,5 @@
-//CI grader generates report at 27-03-2023-10-21-43
-//Commit hash: 5a90fa5
+//CI grader generates report at 27-03-2023-20-35-21
+//Commit hash: ea627be
 grade = 
 {
   "andyyhy": {
@@ -235,34 +235,34 @@ grade =
         ]
       },
       "IK_Jacobian": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "0 out of 2 test cases passed"
+          "2 out of 2 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Incorrect IK Jacobian for test 0\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 1": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Incorrect IK Jacobian for test 1\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           }
         }
       },
       "IK_JTranspose": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "1 out of 3 test cases passed"
+          "3 out of 3 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: IK_JTranspose test 0 failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 1": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: IK_JTranspose test 1 failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 2": {
             "Status": "Succeed",
