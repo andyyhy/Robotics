@@ -50,33 +50,73 @@ kineval.poseIsCollision = function robot_collision_test(q) {
     // perform collision test of robot geometry against planning world 
 
     // test base origin (not extents) against world boundary extents
-    if ((q[0]<robot_boundary[0][0])||(q[0]>robot_boundary[1][0])||(q[2]<robot_boundary[0][2])||(q[2]>robot_boundary[1][2]))
+    if ((q[0] < robot_boundary[0][0]) || (q[0] > robot_boundary[1][0]) || (q[2] < robot_boundary[0][2]) || (q[2] > robot_boundary[1][2]))
         return robot.base;
 
     // traverse robot kinematics to test each body for collision
     // STENCIL: implement forward kinematics for collision detection
-    //return robot_collision_forward_kinematics(q);
+    return robot_collision_forward_kinematics(q);
 
 }
 
+function robot_collision_forward_kinematics(q) {
+    var mstack = generate_identity();
+
+    //Start from base
+    var temp = matrix_multiply(mstack, generate_translation_matrix(robot.origin.xyz[0], robot.origin.xyz[1], robot.origin.xyz[2]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_Z(robot.origin.rpy[2]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_Y(robot.origin.rpy[1]));
+    mstack = matrix_multiply(temp, generate_rotation_matrix_X(robot.origin.rpy[0]));
+
+    //Start Recursive Traversal
+    var local_collision;
+    for (var i = 0; i < robot.links[robot.base].children.length; i++) {
+        local_collision = traverse_collision_forward_kinematics_joint(robot.joints[robot.links[robot.base].children[i]], mstack, q);
+        if (local_collision) {
+            return local_collision;
+        }
+
+    }
+    return false
+}
+
+function traverse_collision_forward_kinematics_joint(joint, mstack, q) {
+
+    //console.log(joint);
+
+    var temp = matrix_multiply(mstack, generate_translation_matrix(joint.origin.xyz[0], joint.origin.xyz[1], joint.origin.xyz[2]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_Z(joint.origin.rpy[2]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_Y(joint.origin.rpy[1]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_X(joint.origin.rpy[0]));
+    q = kineval.quaternionFromAxisAngle(joint.axis, joint.angle);
+    q_mat = kineval.quaternionToRotationMatrix(q);
+    mstack = matrix_multiply(temp, q_mat);
+
+    var local_collision = traverse_collision_forward_kinematics_link(robot.links[joint.child], mstack, q);
+    if (local_collision) {
+        return local_collision;
+    }
+    return false
+}
 
 
-function traverse_collision_forward_kinematics_link(link,mstack,q) {
+function traverse_collision_forward_kinematics_link(link, mstack, q) {
 
     /* test collision FK
     console.log(link);
     */
+    //console.log(link);
     if (typeof link.visual !== 'undefined') {
-        var local_link_xform = matrix_multiply(mstack,generate_translation_matrix(link.visual.origin.xyz[0],link.visual.origin.xyz[1],link.visual.origin.xyz[2]));
+        var local_link_xform = matrix_multiply(mstack, generate_translation_matrix(link.visual.origin.xyz[0], link.visual.origin.xyz[1], link.visual.origin.xyz[2]));
     }
     else {
-        var local_link_xform = matrix_multiply(mstack,generate_identity());
+        var local_link_xform = matrix_multiply(mstack, generate_identity());
     }
 
     // test collision by transforming obstacles in world to link space
-/*
-    mstack_inv = matrix_invert_affine(mstack);
-*/
+    /*
+        mstack_inv = matrix_invert_affine(mstack);
+    */
     mstack_inv = numeric.inv(mstack);
 
     var i;
@@ -84,32 +124,32 @@ function traverse_collision_forward_kinematics_link(link,mstack,q) {
 
     // test each obstacle against link bbox geometry by transforming obstacle into link frame and testing against axis aligned bounding box
     //for (j=0;j<robot_obstacles.length;j++) { 
-    for (j in robot_obstacles) { 
+    for (j in robot_obstacles) {
 
-        var obstacle_local = matrix_multiply(mstack_inv,robot_obstacles[j].location);
+        var obstacle_local = matrix_multiply(mstack_inv, robot_obstacles[j].location);
 
         // assume link is in collision as default
-        var in_collision = true; 
+        var in_collision = true;
 
         // if obstacle lies outside the link extents along any dimension, no collision is detected
         if (
-            (obstacle_local[0][0]<(link.bbox.min.x-robot_obstacles[j].radius))
+            (obstacle_local[0][0] < (link.bbox.min.x - robot_obstacles[j].radius))
             ||
-            (obstacle_local[0][0]>(link.bbox.max.x+robot_obstacles[j].radius))
+            (obstacle_local[0][0] > (link.bbox.max.x + robot_obstacles[j].radius))
         )
-                in_collision = false;
+            in_collision = false;
         if (
-            (obstacle_local[1][0]<(link.bbox.min.y-robot_obstacles[j].radius))
+            (obstacle_local[1][0] < (link.bbox.min.y - robot_obstacles[j].radius))
             ||
-            (obstacle_local[1][0]>(link.bbox.max.y+robot_obstacles[j].radius))
+            (obstacle_local[1][0] > (link.bbox.max.y + robot_obstacles[j].radius))
         )
-                in_collision = false;
+            in_collision = false;
         if (
-            (obstacle_local[2][0]<(link.bbox.min.z-robot_obstacles[j].radius)) 
+            (obstacle_local[2][0] < (link.bbox.min.z - robot_obstacles[j].radius))
             ||
-            (obstacle_local[2][0]>(link.bbox.max.z+robot_obstacles[j].radius))
+            (obstacle_local[2][0] > (link.bbox.max.z + robot_obstacles[j].radius))
         )
-                in_collision = false;
+            in_collision = false;
 
         // if obstacle lies within link extents along all dimensions, a collision is detected and return true
         if (in_collision)
@@ -121,7 +161,7 @@ function traverse_collision_forward_kinematics_link(link,mstack,q) {
         var local_collision;
         //for (i=0;i<link.children.length;i++) {
         for (i in link.children) {
-            local_collision = traverse_collision_forward_kinematics_joint(robot.joints[link.children[i]],mstack,q)
+            local_collision = traverse_collision_forward_kinematics_joint(robot.joints[link.children[i]], mstack, q)
             if (local_collision)
                 return local_collision;
         }
