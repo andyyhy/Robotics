@@ -1,5 +1,5 @@
-//CI grader generates report at 07-04-2023-16-02-53
-//Commit hash: d694ca1
+//CI grader generates report at 08-04-2023-00-47-21
+//Commit hash: 8749760
 grade = 
 {
   "andyyhy": {
@@ -289,16 +289,16 @@ grade =
       "MotionPlan_Collision": {
         "status": "PENDING",
         "comments": [
-          "0 out of 3 test cases passed"
+          "2 out of 3 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Collision test 0 failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 1": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Collision test 1 failed\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 2": {
             "Status": "Failed",
@@ -318,7 +318,7 @@ grade =
           },
           "Test 1": {
             "Status": "Failed",
-            "Stderr": "b''"
+            "Stderr": "b'[ERROR]: Search time out\\n'"
           },
           "Test 2": {
             "Status": "Failed",
@@ -326,7 +326,7 @@ grade =
           },
           "Test 3": {
             "Status": "Failed",
-            "Stderr": "b''"
+            "Stderr": "b'[ERROR]: Search time out\\n'"
           }
         }
       },
