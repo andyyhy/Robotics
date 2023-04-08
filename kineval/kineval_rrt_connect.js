@@ -61,10 +61,10 @@ kineval.planMotionRRTConnect = function motionPlanningRRTConnect() {
         }
         else kineval.params.planner_state = "searching";
     }
-    else if (kineval.params.update_motion_plan_traversal||kineval.params.persist_motion_plan_traversal) {
+    else if (kineval.params.update_motion_plan_traversal || kineval.params.persist_motion_plan_traversal) {
 
         if (kineval.params.persist_motion_plan_traversal) {
-            kineval.motion_plan_traversal_index = (kineval.motion_plan_traversal_index+1)%kineval.motion_plan.length;
+            kineval.motion_plan_traversal_index = (kineval.motion_plan_traversal_index + 1) % kineval.motion_plan.length;
             textbar.innerHTML = "traversing planned motion trajectory";
         }
         else
@@ -92,7 +92,7 @@ kineval.planMotionRRTConnect = function motionPlanningRRTConnect() {
 }
 
 
-    // STENCIL: uncomment and complete initialization function
+// STENCIL: uncomment and complete initialization function
 kineval.robotRRTPlannerInit = function robot_rrt_planner_init() {
 
     // form configuration from base location and joint angles
@@ -115,9 +115,9 @@ kineval.robotRRTPlannerInit = function robot_rrt_planner_init() {
     }
 
     // set goal configuration as the zero configuration
-    var i; 
+    var i;
     q_goal_config = new Array(q_start_config.length);
-    for (i=0;i<q_goal_config.length;i++) q_goal_config[i] = 0;
+    for (i = 0; i < q_goal_config.length; i++) q_goal_config[i] = 0;
 
     // flag to continue rrt iterations
     rrt_iterate = true;
@@ -134,22 +134,27 @@ function robot_rrt_planner_iterate() {
     var i;
     rrt_alg = 1;  // 0: basic rrt (OPTIONAL), 1: rrt_connect (REQUIRED)
 
-    if (rrt_iterate && (Date.now()-cur_time > 10)) {
+    if (rrt_iterate && (Date.now() - cur_time > 10)) {
         cur_time = Date.now();
 
-    // STENCIL: implement single rrt iteration here. an asynch timing mechanism 
-    //   is used instead of a for loop to avoid blocking and non-responsiveness 
-    //   in the browser.
-    //
-    //   once plan is found, highlight vertices of found path by:
-    //     tree.vertices[i].vertex[j].geom.material.color = {r:1,g:0,b:0};
-    //
-    //   provided support functions:
-    //
-    //   kineval.poseIsCollision - returns if a configuration is in collision
-    //   tree_init - creates a tree of configurations
-    //   tree_add_vertex - adds and displays new configuration vertex for a tree
-    //   tree_add_edge - adds and displays new tree edge between configurations
+        // STENCIL: implement single rrt iteration here. an asynch timing mechanism 
+        //   is used instead of a for loop to avoid blocking and non-responsiveness 
+        //   in the browser.
+        //
+        //   once plan is found, highlight vertices of found path by:
+        //     tree.vertices[i].vertex[j].geom.material.color = {r:1,g:0,b:0};
+        //
+        //   provided support functions:
+        //
+        //   kineval.poseIsCollision - returns if a configuration is in collision
+        //   tree_init - creates a tree of configurations
+        //   tree_add_vertex - adds and displays new configuration vertex for a tree
+        //   tree_add_edge - adds and displays new tree edge between configurations
+
+
+
+
+
     }
 
 }
@@ -178,7 +183,7 @@ function tree_init(q) {
     return tree;
 }
 
-function tree_add_vertex(tree,q) {
+function tree_add_vertex(tree, q) {
 
 
     // create new vertex object for tree with given configuration and no edges
@@ -200,8 +205,8 @@ function add_config_origin_indicator_geom(vertex) {
     // assumes base origin location for configuration is first 3 elements 
     // assumes vertex is from tree and includes vertex field with configuration
 
-    temp_geom = new THREE.CubeGeometry(0.1,0.1,0.1);
-    temp_material = new THREE.MeshLambertMaterial( { color: 0xffff00, transparent: true, opacity: 0.7 } );
+    temp_geom = new THREE.CubeGeometry(0.1, 0.1, 0.1);
+    temp_material = new THREE.MeshLambertMaterial({ color: 0xffff00, transparent: true, opacity: 0.7 });
     temp_mesh = new THREE.Mesh(temp_geom, temp_material);
     temp_mesh.position.x = vertex.vertex[0];
     temp_mesh.position.y = vertex.vertex[1];
@@ -211,7 +216,7 @@ function add_config_origin_indicator_geom(vertex) {
 }
 
 
-function tree_add_edge(tree,q1_idx,q2_idx) {
+function tree_add_edge(tree, q1_idx, q2_idx) {
 
     // add edge to first vertex as pointer to second vertex
     tree.vertices[q1_idx].edges.push(tree.vertices[q2_idx]);
@@ -221,6 +226,7 @@ function tree_add_edge(tree,q1_idx,q2_idx) {
 
     // can draw edge here, but not doing so to save rendering computation
 }
+
 
 //////////////////////////////////////////////////
 /////     RRT IMPLEMENTATION FUNCTIONS

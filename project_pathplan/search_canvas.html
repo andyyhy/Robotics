@@ -49,63 +49,62 @@
 
 <html>
 
-  <script src="draw.js"></script>
-  <script src="infrastructure.js"></script>
-  <script src="graph_search.js"></script>
-  <script src="rrt.js"></script>
+<script src="draw.js"></script>
+<script src="infrastructure.js"></script>
+<script src="graph_search.js"></script>
+<script src="rrt.js"></script>
 
-  <body onload="init()">
+<body onload="init()">
 
-    <p style="font-family:monospace;font-size:14">2D Search Canvas</p>
+  <p style="font-family:monospace;font-size:14">2D Search Canvas</p>
 
-    <canvas id="myCanvas" width=800 height=800 style="z-index: 10 ;border:1px solid #000000;">
-    </canvas>
+  <canvas id="myCanvas" width=800 height=800 style="z-index: 10 ;border:1px solid #000000;">
+  </canvas>
 
-    <script>
-      // setting environment variable defaults:
+  <script>
+    // setting environment variable defaults:
 
-      // specify default search algorithm to use for planning
-      //search_alg = "depth-first";
-      //search_alg = "breadth-first";
-      //search_alg = "greedy-best-first";
-      search_alg = "A-star";
-      //search_alg = "RRT";
-      //search_alg = "RRT-connect";
-      //search_alg = "RRT-star";
+    // specify default search algorithm to use for planning
+    //search_alg = "depth-first";
+    //search_alg = "breadth-first";
+    //search_alg = "greedy-best-first";
+    //search_alg = "A-star";
+    //search_alg = "RRT";
+    search_alg = "RRT-connect";
+    //search_alg = "RRT-star";
 
-      // specify default the world for the planner
-      //  (stored as "range" global variable with name "planning_scene")
-      //planning_scene = "scenes/empty.js";
-      planning_scene = "scenes/misc.js";
-      //planning_scene = "scenes/narrow1.js";
-      //planning_scene = "scenes/narrow2.js";
-      //planning_scene = "scenes/three_sections.js";
+    // specify default the world for the planner
+    //  (stored as "range" global variable with name "planning_scene")
+    //planning_scene = "scenes/empty.js";
+    //planning_scene = "scenes/misc.js";
+    //planning_scene = "scenes/narrow1.js";
+    planning_scene = "scenes/narrow2.js";
+    //planning_scene = "scenes/three_sections.js";
 
-      // specify default eps (epsilon) spatial resolution variable
-      //   for RRT, specifies threshold radius for step size and reaching goal
-      eps = 0.1;
-      
-      // parse user input
-      var url_parsed = window.location.href.split("?");
-      for (i=1;i<url_parsed.length;i++) {
-        var param_parsed = url_parsed[i].split("=");
-        if ((param_parsed[0] !== "search_alg")&&(param_parsed[0] !== "planning_scene")&&(param_parsed[0] !== "color_scheme"))
-            eval(param_parsed[0]+"="+param_parsed[1]);
-        else
-            eval(param_parsed[0]+"=\'"+param_parsed[1]+"\'");
-      }
-      
-      // load planning scene src files dynamically
-      if (typeof planning_scene !== 'undefined')
-          obstaclesElement = document.createElement('script');
-          obstaclesElement.setAttribute("type","text/javascript");
-          obstaclesElement.setAttribute("src",planning_scene);
-  
-          if (typeof obstaclesElement !== 'undefined') {
-              document.getElementsByTagName("head")[0].appendChild(obstaclesElement);
-          }
-    </script>
-  </body>
+    // specify default eps (epsilon) spatial resolution variable
+    //   for RRT, specifies threshold radius for step size and reaching goal
+    eps = 0.1;
+
+    // parse user input
+    var url_parsed = window.location.href.split("?");
+    for (i = 1; i < url_parsed.length; i++) {
+      var param_parsed = url_parsed[i].split("=");
+      if ((param_parsed[0] !== "search_alg") && (param_parsed[0] !== "planning_scene") && (param_parsed[0] !== "color_scheme"))
+        eval(param_parsed[0] + "=" + param_parsed[1]);
+      else
+        eval(param_parsed[0] + "=\'" + param_parsed[1] + "\'");
+    }
+
+    // load planning scene src files dynamically
+    if (typeof planning_scene !== 'undefined')
+      obstaclesElement = document.createElement('script');
+    obstaclesElement.setAttribute("type", "text/javascript");
+    obstaclesElement.setAttribute("src", planning_scene);
+
+    if (typeof obstaclesElement !== 'undefined') {
+      document.getElementsByTagName("head")[0].appendChild(obstaclesElement);
+    }
+  </script>
+</body>
+
 </html>
-
-
