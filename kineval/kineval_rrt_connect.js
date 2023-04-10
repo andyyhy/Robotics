@@ -125,6 +125,12 @@ kineval.robotRRTPlannerInit = function robot_rrt_planner_init() {
 
     // make sure the rrt iterations are not running faster than animation update
     cur_time = Date.now();
+
+    T_a = tree_init(q_start_config);
+
+    T_b = tree_init(q_goal_config);
+
+    kineval.motion_plan = [];
 }
 
 
@@ -151,9 +157,19 @@ function robot_rrt_planner_iterate() {
         //   tree_add_vertex - adds and displays new configuration vertex for a tree
         //   tree_add_edge - adds and displays new tree edge between configurations
 
-
-
-
+        q_random = random_config();
+        if (rrt_extend(T_a, q_random) != "trapped") {
+            if (rrt_connect(T_b, T_a.vertices[T_a.newest].vertex) == "reached") {
+                var T_a_path = find_path(T_a);
+                var T_b_path = find_path(T_b);
+                T_a_path.reverse();
+                var path = generate_path_tree(T_a_path, T_b_path);
+                search_iterate = false;
+                return "reached";
+            }
+        }
+        swap(T_a, T_b);
+        return "extended";
 
     }
 
@@ -233,22 +249,150 @@ function tree_add_edge(tree, q1_idx, q2_idx) {
 //////////////////////////////////////////////////
 
 
-    // STENCIL: implement RRT-Connect functions here, such as:
-    //   rrt_extend
-    //   rrt_connect
-    //   random_config
-    //   new_config
-    //   nearest_neighbor
-    //   normalize_joint_state
-    //   find_path
-    //   path_dfs
+// STENCIL: implement RRT-Connect functions here, such as:
+//   rrt_extend
+//   rrt_connect
+//   random_config
+//   new_config
+//   nearest_neighbor
+//   normalize_joint_state
+//   find_path
+//   path_dfs
 
 
 
+function rrt_extend(tree, q) {
+    var q_nearest_index = nearest_neighbor(tree, q);
+    //console.log(q_nearest_index);
+    var new_config = find_new_config(q, tree.vertices[q_nearest_index].vertex);
+
+    if (kineval.poseIsCollision(new_config)) {
+        return "trapped";
+    }
+
+    tree_add_vertex(tree, new_config);
+    tree_add_edge(tree, q_nearest_index, tree.newest);
+    tree.vertices[tree.newest].parent = q_nearest_index;
+
+    if (find_distance(new_config, q) < 0.3) {
+        return "reached";
+    }
+    return "advanced";
+}
+
+function rrt_connect(tree, q) {
+    do {
+        var status = rrt_extend(tree, q);
+    } while (status == "advanced")
+
+    return status;
+}
+
+function random_config() {
 
 
+    var x = Math.random() * (robot_boundary[1][0] - robot_boundary[0][0]) + robot_boundary[0][0];
+    var y = 0;
+    var z = Math.random() * (robot_boundary[1][2] - robot_boundary[0][2]) + robot_boundary[0][2];
+
+    var roll = 0;
+    var pitch = Math.random() * (2 * Math.PI);
+    var yaw = 0;
+
+    var random_config = [
+        x,
+        y,
+        z,
+        roll,
+        pitch,
+        yaw
+    ]
+
+    for (x in robot.joints) {
+        random_config = random_config.concat(Math.random() * (2 * Math.PI));
+    }
+
+    return random_config;
+}
+
+function find_new_config(q, q_nearest) {
+
+    var distance = find_distance(q, q_nearest);
+
+    if (distance < 0.3) {
+        return q;
+    }
+
+    var t = 0.3 / distance;
+
+    var new_q_x = (1 - t) * q_nearest[0] + t * q[0];
+    var new_q_z = (1 - t) * q_nearest[2] + t * q[2];
 
 
+    var new_config = { ...q };
 
+    new_config[0] = new_q_x;
+    new_config[2] = new_q_z;
+
+
+    return new_config;
+}
+
+function nearest_neighbor(tree, q) {
+    var minDistance = Infinity;
+    var q_nearest = null;
+    var q_nearest_index = null;
+
+    for (var i = 0; i < tree.vertices.length; i++) {
+        var q_cur = tree.vertices[i].vertex;
+        var distance = find_distance(q_cur, q)
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            q_nearest = q_cur;
+            q_nearest_index = i;
+        }
+    }
+    return q_nearest_index;
+}
+
+function find_distance(q1, q2) {
+    var dx = q2[0] - q1[0];
+    var dz = q2[2] - q1[2];
+    var distance = Math.sqrt(dx * dx + dz * dz);
+    return distance;
+}
+
+function find_path(tree) {
+    var path = [tree.newest];
+    var cur_vertex_index = tree.newest;
+
+    while (cur_vertex_index !== 0) {
+        var parent_vertex_index = tree.vertices[cur_vertex_index].parent;
+        path.push(parent_vertex_index);
+        cur_vertex_index = parent_vertex_index;
+    }
+    return path;
+}
+
+function generate_path_tree(path_a, path_b) {
+
+    for (var i = 0; i < path_a.length; i++) {
+        T_a.vertices[path_a[i]].geom.material.color = { r: 1, g: 0, b: 0 };
+        kineval.motion_plan.push(T_a.vertices[path_a[i]]);
+    }
+    for (var i = 0; i < path_b.length; i++) {
+        T_b.vertices[path_b[i]].geom.material.color = { r: 1, g: 0, b: 0 };
+        kineval.motion_plan.push(T_b.vertices[path_b[i]]);
+    }
+
+}
+
+function swap(T_1, T_2) {
+    var temp = { ...T_1 };
+
+    Object.assign(T_1, T_2);
+    Object.assign(T_2, temp);
+}
 
 

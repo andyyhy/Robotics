@@ -39,6 +39,7 @@ kineval.robotIsCollision = function robot_iscollision() {
         q_robot_config = q_robot_config.concat(robot.joints[x].angle);
     }
 
+
     // test for collision and change base color based on the result
     collision_result = kineval.poseIsCollision(q_robot_config);
 
@@ -61,10 +62,10 @@ kineval.poseIsCollision = function robot_collision_test(q) {
 
 function robot_collision_forward_kinematics(q) {
     var mstack = generate_identity();
-    var temp = matrix_multiply(mstack, generate_translation_matrix(robot.origin.xyz[0], robot.origin.xyz[1], robot.origin.xyz[2]));
-    temp = matrix_multiply(temp, generate_rotation_matrix_Z(robot.origin.rpy[2]));
-    temp = matrix_multiply(temp, generate_rotation_matrix_Y(robot.origin.rpy[1]));
-    mstack = matrix_multiply(temp, generate_rotation_matrix_X(robot.origin.rpy[0]));
+    var temp = matrix_multiply(mstack, generate_translation_matrix(q[0], q[1], q[2]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_Z(q[5]));
+    temp = matrix_multiply(temp, generate_rotation_matrix_Y(q[4]));
+    mstack = matrix_multiply(temp, generate_rotation_matrix_X(q[3]));
     return traverse_collision_forward_kinematics_link(robot.links[robot.base], mstack, q);
 }
 
@@ -86,7 +87,7 @@ function traverse_collision_forward_kinematics_link(link, mstack, q) {
     /* test collision FK
     console.log(link);
     */
-    console.log(link);
+    //console.log(link);
     if (typeof link.visual !== 'undefined') {
         var local_link_xform = matrix_multiply(mstack, generate_translation_matrix(link.visual.origin.xyz[0], link.visual.origin.xyz[1], link.visual.origin.xyz[2]));
     }
