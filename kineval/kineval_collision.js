@@ -61,42 +61,23 @@ kineval.poseIsCollision = function robot_collision_test(q) {
 
 function robot_collision_forward_kinematics(q) {
     var mstack = generate_identity();
-
-    //Start from base
     var temp = matrix_multiply(mstack, generate_translation_matrix(robot.origin.xyz[0], robot.origin.xyz[1], robot.origin.xyz[2]));
     temp = matrix_multiply(temp, generate_rotation_matrix_Z(robot.origin.rpy[2]));
     temp = matrix_multiply(temp, generate_rotation_matrix_Y(robot.origin.rpy[1]));
     mstack = matrix_multiply(temp, generate_rotation_matrix_X(robot.origin.rpy[0]));
-
-    //Start Recursive Traversal
-    var local_collision;
-    for (var i = 0; i < robot.links[robot.base].children.length; i++) {
-        local_collision = traverse_collision_forward_kinematics_joint(robot.joints[robot.links[robot.base].children[i]], mstack, q);
-        if (local_collision) {
-            return local_collision;
-        }
-
-    }
-    return false
+    return traverse_collision_forward_kinematics_link(robot.links[robot.base], mstack, q);
 }
 
 function traverse_collision_forward_kinematics_joint(joint, mstack, q) {
 
     //console.log(joint);
-
     var temp = matrix_multiply(mstack, generate_translation_matrix(joint.origin.xyz[0], joint.origin.xyz[1], joint.origin.xyz[2]));
     temp = matrix_multiply(temp, generate_rotation_matrix_Z(joint.origin.rpy[2]));
     temp = matrix_multiply(temp, generate_rotation_matrix_Y(joint.origin.rpy[1]));
-    temp = matrix_multiply(temp, generate_rotation_matrix_X(joint.origin.rpy[0]));
-    q = kineval.quaternionFromAxisAngle(joint.axis, joint.angle);
-    q_mat = kineval.quaternionToRotationMatrix(q);
-    mstack = matrix_multiply(temp, q_mat);
+    mstack = matrix_multiply(temp, generate_rotation_matrix_X(joint.origin.rpy[0]));
 
     var local_collision = traverse_collision_forward_kinematics_link(robot.links[joint.child], mstack, q);
-    if (local_collision) {
-        return local_collision;
-    }
-    return false
+    return local_collision;
 }
 
 
@@ -105,7 +86,7 @@ function traverse_collision_forward_kinematics_link(link, mstack, q) {
     /* test collision FK
     console.log(link);
     */
-    //console.log(link);
+    console.log(link);
     if (typeof link.visual !== 'undefined') {
         var local_link_xform = matrix_multiply(mstack, generate_translation_matrix(link.visual.origin.xyz[0], link.visual.origin.xyz[1], link.visual.origin.xyz[2]));
     }
