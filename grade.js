@@ -1,5 +1,5 @@
-//CI grader generates report at 09-04-2023-21-34-22
-//Commit hash: 41bc449
+//CI grader generates report at 10-04-2023-08-30-30
+//Commit hash: f75fe9d
 grade = 
 {
   "andyyhy": {
@@ -287,9 +287,29 @@ grade =
         }
       },
       "MotionPlan_Collision": {
+        "status": "PASS",
+        "comments": [
+          "3 out of 3 test cases passed"
+        ],
+        "test results": {
+          "Test 0": {
+            "Status": "Succeed",
+            "Stderr": "b''"
+          },
+          "Test 1": {
+            "Status": "Succeed",
+            "Stderr": "b''"
+          },
+          "Test 2": {
+            "Status": "Succeed",
+            "Stderr": "b''"
+          }
+        }
+      },
+      "MotionPlan_2DRRTConnect": {
         "status": "PENDING",
         "comments": [
-          "2 out of 3 test cases passed"
+          "3 out of 4 test cases passed"
         ],
         "test results": {
           "Test 0": {
@@ -302,27 +322,7 @@ grade =
           },
           "Test 2": {
             "Status": "Failed",
-            "Stderr": "b'[ERROR]: Collision test 2 failed\\n'"
-          }
-        }
-      },
-      "MotionPlan_2DRRTConnect": {
-        "status": "PASS",
-        "comments": [
-          "4 out of 4 test cases passed"
-        ],
-        "test results": {
-          "Test 0": {
-            "Status": "Succeed",
-            "Stderr": "b''"
-          },
-          "Test 1": {
-            "Status": "Succeed",
-            "Stderr": "b''"
-          },
-          "Test 2": {
-            "Status": "Succeed",
-            "Stderr": "b''"
+            "Stderr": "b'[ERROR]: Search time out\\n'"
           },
           "Test 3": {
             "Status": "Succeed",
