@@ -1,5 +1,5 @@
-//CI grader generates report at 10-04-2023-08-30-30
-//Commit hash: f75fe9d
+//CI grader generates report at 10-04-2023-12-28-08
+//Commit hash: 6c137e0
 grade = 
 {
   "andyyhy": {
@@ -307,9 +307,9 @@ grade =
         }
       },
       "MotionPlan_2DRRTConnect": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          "3 out of 4 test cases passed"
+          "4 out of 4 test cases passed"
         ],
         "test results": {
           "Test 0": {
@@ -321,8 +321,8 @@ grade =
             "Stderr": "b''"
           },
           "Test 2": {
-            "Status": "Failed",
-            "Stderr": "b'[ERROR]: Search time out\\n'"
+            "Status": "Succeed",
+            "Stderr": "b''"
           },
           "Test 3": {
             "Status": "Succeed",
