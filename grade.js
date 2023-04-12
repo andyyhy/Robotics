@@ -1,5 +1,5 @@
-//CI grader generates report at 11-04-2023-14-57-16
-//Commit hash: 4d61d8e
+//CI grader generates report at 12-04-2023-13-04-46
+//Commit hash: 2a1427a
 grade = 
 {
   "andyyhy": {
@@ -16,7 +16,7 @@ grade =
         ]
       },
       "ROS Pub/Sub": {
-        "status": "CHECK",
+        "status": "CHECK - PARTIAL CREDIT",
         "comments": "Passing 3 out of 3 tests"
       },
       "PathPlan_Heap": {
@@ -217,10 +217,16 @@ grade =
         ]
       },
       "FSMDance_SetpointControl": {
-        "status": "PENDING",
+        "status": "PASS",
         "comments": [
-          ""
-        ]
+          "1 out of 1 test cases passed"
+        ],
+        "test results": {
+          "Test 0": {
+            "Status": "Succeed",
+            "Stderr": "b''"
+          }
+        }
       },
       "FSMDance_FSM": {
         "status": "PENDING",
@@ -265,22 +271,22 @@ grade =
         }
       },
       "IK_JPseudoInverse": {
-        "status": "PASS",
+        "status": "PENDING",
         "comments": [
-          "3 out of 3 test cases passed"
+          "0 out of 3 test cases passed"
         ],
         "test results": {
           "Test 0": {
-            "Status": "Succeed",
-            "Stderr": "b''"
+            "Status": "Failed",
+            "Stderr": "b\"module.js:549\\n    throw err;\\n    ^\\n\\nError: Cannot find module '/andyyhy/IK_JPseudoInverse/test_0.js'\\n    at Function.Module._resolveFilename (module.js:547:15)\\n    at Function.Module._load (module.js:474:25)\\n    at Function.Module.runMain (module.js:693:10)\\n    at startup (bootstrap_node.js:188:16)\\n    at bootstrap_node.js:609:3\\n\""
           },
           "Test 1": {
-            "Status": "Succeed",
-            "Stderr": "b''"
+            "Status": "Failed",
+            "Stderr": "b\"module.js:549\\n    throw err;\\n    ^\\n\\nError: Cannot find module '/andyyhy/IK_JPseudoInverse/test_1.js'\\n    at Function.Module._resolveFilename (module.js:547:15)\\n    at Function.Module._load (module.js:474:25)\\n    at Function.Module.runMain (module.js:693:10)\\n    at startup (bootstrap_node.js:188:16)\\n    at bootstrap_node.js:609:3\\n\""
           },
           "Test 2": {
-            "Status": "Succeed",
-            "Stderr": "b''"
+            "Status": "Failed",
+            "Stderr": "b\"module.js:549\\n    throw err;\\n    ^\\n\\nError: Cannot find module '/andyyhy/IK_JPseudoInverse/test_2.js'\\n    at Function.Module._resolveFilename (module.js:547:15)\\n    at Function.Module._load (module.js:474:25)\\n    at Function.Module.runMain (module.js:693:10)\\n    at startup (bootstrap_node.js:188:16)\\n    at bootstrap_node.js:609:3\\n\""
           }
         }
       },
