@@ -1,4 +1,4 @@
-//CI grader generates report at 22-04-2023-11-57-00
+//CI grader generates report at 23-04-2023-18-31-34
 //Commit hash: cfd6263
 grade = 
 {
@@ -31,7 +31,8 @@ grade =
       "FSM_Presentation": "100.0%",
       "FSMDance_FSM": "100.0%",
       "MotionPlan_CSpaceRRTConnect": "100.0%",
-      "Best Use of Robotics": "100.0%"
+      "Best Use of Robotics": "100.0%",
+      "Extra Credit total": "0.5"
     },
     "quizzes": {
       "Q1": "85.0%",
@@ -43,7 +44,8 @@ grade =
       "Q7": "95.0%",
       "Q8": "100.0%",
       "Q9": "100.0%",
-      "Q10": "100.0%"
+      "Q10": "100.0%",
+      "Q11": "100.0%"
     }
   }
 }
